@@ -1,15 +1,17 @@
 name: flutter_qq
 description: Flutter plugin for QQ.
-version: 0.0.5
-author: marekchen<c491843272@gmail.com>
-homepage: https://github.com/marekchen/flutter_qq
+version: 0.0.6
+homepage: https://github.com/mdddj/flutter_qq
+
+environment:
+  sdk: '>=2.14.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  image_picker: ^0.6.0+15
+  image_picker: ^0.8.4+10
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -20,6 +22,4 @@ flutter:
     androidPackage: com.github.marekchen.flutterqq
     pluginClass: FlutterQqPlugin
 
-environment:
-  sdk: ">=2.0.0-dev.28.0 <3.0.0"
-  flutter: ">=1.5.0 <2.0.0"
+

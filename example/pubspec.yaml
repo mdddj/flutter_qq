@@ -1,6 +1,7 @@
 name: flutter_qq_example
 description: Demonstrates how to use the flutter_qq plugin.
-
+environment:
+  sdk: '>=2.14.0 <3.0.0'
 dependencies:
   flutter:
     sdk: flutter

@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<File> _images = new List();
+  List<File> _images = [];
   String _output = '---';
 
   @override
@@ -23,11 +23,11 @@ class _MyAppState extends State<MyApp> {
 
   Future _chooseImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    _images.add(image);
+    _images.add(File(image.path));
   }
 
   Future<Null> _handleisQQInstalled() async {
-    var result = await FlutterQq.isQQInstalled();
+    var result = await (FlutterQq.isQQInstalled() as FutureOr<bool>);
     var output;
     if (result) {
       output = "QQ已安装";
@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         }
         output = "登录成功" + qqResult.response.toString();
       } else {
-        output = "登录失败" + qqResult.message;
+        output = "登录失败" + qqResult.message!;
       }
       setState(() {
         _output = output;
@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp> {
       if (qqResult.code == 0) {
         output = "分享成功";
       } else if (qqResult.code == 1) {
-        output = "分享失败" + qqResult.message;
+        output = "分享失败" + qqResult.message!;
       } else {
         output = "用户取消";
       }
@@ -101,7 +101,7 @@ class _MyAppState extends State<MyApp> {
       if (qqResult.code == 0) {
         output = "分享成功";
       } else if (qqResult.code == 1) {
-        output = "分享失败" + qqResult.message;
+        output = "分享失败" + qqResult.message!;
       } else {
         output = "用户取消";
       }
@@ -128,7 +128,7 @@ class _MyAppState extends State<MyApp> {
       if (qqResult.code == 0) {
         output = "分享成功";
       } else if (qqResult.code == 1) {
-        output = "分享失败" + qqResult.message;
+        output = "分享失败" + qqResult.message!;
       } else {
         output = "用户取消";
       }

@@ -25,19 +25,19 @@ enum QZONE_FLAG {
 
 class ShareQQContent {
   SHARE_TO_QQ_TYPE shareType;
-  String title;
-  String targetUrl;
-  String summary;
+  String? title;
+  String? targetUrl;
+  String? summary;
 
-  String imageUrl;
-  String imageLocalUrl;
+  String? imageUrl;
+  String? imageLocalUrl;
 
-  String appName;
-  String audioUrl;
+  String? appName;
+  String? audioUrl;
 
   QZONE_FLAG qzoneFlag;
 
-  String ark;
+  String? ark;
 
   ShareQQContent({
     this.shareType = SHARE_TO_QQ_TYPE.DEFAULT,
@@ -55,14 +55,14 @@ class ShareQQContent {
 
 class ShareQzoneContent {
   SHARE_TO_QZONE_TYPE shareType;
-  String title;
-  String targetUrl;
-  String summary;
-  String imageUrl;
-  List<String> imageUrls;
+  String? title;
+  String? targetUrl;
+  String? summary;
+  String? imageUrl;
+  List<String>? imageUrls;
 
-  String scene;
-  String callback;
+  String? scene;
+  String? callback;
 
   ShareQzoneContent({
     this.shareType = SHARE_TO_QZONE_TYPE.IMAGE_TEXT,
@@ -77,9 +77,9 @@ class ShareQzoneContent {
 }
 
 class QQResult {
-  int code;
-  String message;
-  Map<dynamic, dynamic> response;
+  int? code;
+  String? message;
+  Map<dynamic, dynamic>? response;
 }
 
 class FlutterQq {
@@ -89,12 +89,12 @@ class FlutterQq {
     await _channel.invokeMethod('registerQQ', {'appId': appId});
   }
 
-  static Future<bool> isQQInstalled() async {
+  static Future<bool?> isQQInstalled() async {
     return await _channel.invokeMethod('isQQInstalled');
   }
 
   static Future<QQResult> login() async {
-    final Map<dynamic, dynamic> result = await _channel.invokeMethod('login');
+    final Map<dynamic, dynamic> result = await (_channel.invokeMethod('login') as FutureOr<Map<dynamic, dynamic>>);
     QQResult qqResult = new QQResult();
     qqResult.code = result["Code"];
     qqResult.message = result["Message"];
@@ -133,7 +133,7 @@ class FlutterQq {
       "ark": shareContent.ark
     };
     final Map<dynamic, dynamic> result =
-        await _channel.invokeMethod('shareToQQ', params);
+        await (_channel.invokeMethod('shareToQQ', params) as FutureOr<Map<dynamic, dynamic>>);
     QQResult qqResult = new QQResult();
     qqResult.code = result["Code"];
     qqResult.message = result["Message"];
@@ -171,7 +171,7 @@ class FlutterQq {
       "callback": shareContent.callback,
     };
     final Map<dynamic, dynamic> result =
-        await _channel.invokeMethod('shareToQzone', params);
+        await (_channel.invokeMethod('shareToQzone', params) as FutureOr<Map<dynamic, dynamic>>);
     QQResult qqResult = new QQResult();
     qqResult.code = result["Code"];
     qqResult.message = result["Message"];
